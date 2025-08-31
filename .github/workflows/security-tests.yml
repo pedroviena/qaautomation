@@ -1,21 +1,29 @@
 name: Security Tests
 
 on:
+  workflow_dispatch:
   push:
     branches: [ main ]
   pull_request:
-    branches: [ main ]
 
 jobs:
-  zap-scan:
+  zap_scan:
     runs-on: ubuntu-latest
+    permissions:
+      issues: write   
+      contents: read 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: ZAP Scan
-        uses: zaproxy/action-baseline@v0.10.0
+      - name: Start target app
+        run: |
+          docker run -d -p 8080:8080 --name myapp myapp:latest
+          sleep 15
+
+      - name: ZAP Baseline Scan
+        uses: zaproxy/action-baseline@v0.11.0
         with:
-          target: 'https://pedroviena.com'
-          artifact_name: 'zap_report'
-          
+          token: ${{ secrets.GITHUB_TOKEN }}
+          docker_name: 'owasp/zap2docker-stable'
+          target: 'http://localhost:8080'
