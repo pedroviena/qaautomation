@@ -9,6 +9,7 @@ on:
 jobs:
   zap-scan:
     runs-on: ubuntu-latest
+    
     permissions:
       contents: write
       issues: write
@@ -18,9 +19,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: ZAPScan
+      - name: ZAP Scan
         uses: zaproxy/action-baseline@v0.10.0
         with:
           target: 'https://pedroviena.com'
-          artifact_name: 'zapreport'
-         
+ 
+          report_name: 'zap_report'
+
+      - name: Upload ZAP Report
+        if: always() 
+        uses: actions/upload-artifact@v4
+        with:
+          name: zap-security-report 
+          path: zap_report.html 
