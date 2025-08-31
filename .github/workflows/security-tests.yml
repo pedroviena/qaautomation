@@ -9,9 +9,6 @@ on:
 jobs:
   zap-scan:
     runs-on: ubuntu-latest
-    permissions:
-      # CORREÇÃO: Concede permissão de escrita para Issues.
-      issues: write
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -19,14 +16,7 @@ jobs:
       - name: ZAP Scan
         uses: zaproxy/action-baseline@v0.10.0
         with:
-          # Usando um alvo público como exemplo para validar a pipeline
           target: 'https://www.zaproxy.org'
           
-          # CORREÇÃO: Não criar uma issue no GitHub automaticamente.
-          # Em vez disso, vamos apenas falhar se houver alertas,
-          # e o relatório ficará salvo como um artefato.
-          fail_action: true
-          issue_title: 'Vulnerabilidades Encontradas pelo ZAP Scan'
-          
-          # Garante que o relatório HTML seja sempre salvo
-          artifact_name: zap-report.html
+   
+          artifact_name: 'zap-report'
