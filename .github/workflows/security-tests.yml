@@ -9,9 +9,6 @@ on:
 jobs:
   zap-scan:
     runs-on: ubuntu-latest
-    permissions:
-      # Concede permissão de escrita para Issues, resolvendo o erro de acesso
-      issues: write
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -19,6 +16,8 @@ jobs:
       - name: ZAP Scan
         uses: zaproxy/action-baseline@v0.10.0
         with:
-          # Lembre-se de substituir pela URL do seu ambiente de testes real
           target: 'https://pedroviena.com'
-          artifact_name: 'zap-report'
+          
+          # CORREÇÃO: Alterado o nome do artefato para usar underscore,
+          # que é um caractere mais seguro para nomes de artefatos.
+          artifact_name: 'zap_report'
