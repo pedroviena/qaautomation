@@ -17,6 +17,11 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      # CORREÇÃO: Adiciona a permissão de execução ao binário do Playwright.
+      # Isso resolve o erro "Permission denied".
+      - name: Set execute permission for Playwright
+        run: chmod +x ./node_modules/.bin/playwright
+
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
       
@@ -27,14 +32,13 @@ jobs:
           TEST_USER: ${{ secrets.TEST_USER }}
           TEST_PASSWORD: ${{ secrets.TEST_PASSWORD }}
           JWT_TOKEN: ${{ secrets.JWT_TOKEN }}
-     
+
       - name: Install Allure Commandline
         if: always()
         run: npm install allure-commandline
 
       - name: Generate Allure Report
         if: always()
-        
         run: npx allure generate allure-results --clean -o allure-report
 
       - name: Upload Allure Report

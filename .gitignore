@@ -1,0 +1,16 @@
+# Dependências
+node_modules
+
+# Arquivos de log e de ambiente
+npm-debug.log
+.env
+
+# Relatórios de teste
+allure-results
+allure-report
+performance-tests/reports
+performance-tests/results.jtl
+security-tests/reports
+
+# Arquivos de sistema
+.DS_Store
