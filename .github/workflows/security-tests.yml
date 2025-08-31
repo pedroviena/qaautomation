@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
-  zap-scan:
+  zapscan:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -18,7 +18,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: ZAP Scan
+      - name: ZAPScan
         uses: zaproxy/action-baseline@v0.10.0
         with:
           target: 'https://pedroviena.com'
