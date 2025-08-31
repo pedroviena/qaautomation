@@ -1,7 +1,10 @@
-# .github/workflows/security-tests.yml
 name: Security Tests
 
-on: [push, pull_request]
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   zap-scan:
@@ -13,6 +16,5 @@ jobs:
       - name: ZAP Scan
         uses: zaproxy/action-baseline@v0.10.0
         with:
-          # IMPORTANTE: Substitua pela URL do seu ambiente de testes
-          target: 'https://www.zaproxy.org' # Usando um alvo público como exemplo
-          artifact_name: zap-report.html
+          
+          target: 'https://www.zaproxy.org'

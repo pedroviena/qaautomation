@@ -1,4 +1,3 @@
-# .github/workflows/performance-tests.yml
 name: Performance Tests
 
 on: [push, pull_request]
