@@ -1,0 +1,18 @@
+# .github/workflows/security-tests.yml
+name: Security Tests
+
+on: [push, pull_request]
+
+jobs:
+  zap-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: ZAP Scan
+        uses: zaproxy/action-baseline@v0.10.0
+        with:
+          # IMPORTANTE: Substitua pela URL do seu ambiente de testes
+          target: 'https://www.zaproxy.org' # Usando um alvo público como exemplo
+          artifact_name: zap-report.html
