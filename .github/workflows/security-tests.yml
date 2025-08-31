@@ -17,7 +17,5 @@ jobs:
         uses: zaproxy/action-baseline@v0.10.0
         with:
           target: 'https://pedroviena.com'
-          
-          # CORREÇÃO: Alterado o nome do artefato para usar underscore,
-          # que é um caractere mais seguro para nomes de artefatos.
           artifact_name: 'zap_report'
+          
