@@ -16,8 +16,5 @@ jobs:
       - name: ZAP Scan
         uses: zaproxy/action-baseline@v0.10.0
         with:
-          # Alvo público e correto (seu site)
           target: 'https://pedroviena.com'
-          
-          # Nome do artefato corrigido
           artifact_name: 'zap_report'
