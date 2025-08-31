@@ -22,4 +22,5 @@ jobs:
         uses: zaproxy/action-baseline@v0.10.0
         with:
           target: 'https://pedroviena.com'
+          artifact_name: 'zapreport'
          
